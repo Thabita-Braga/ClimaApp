@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Previsão do Tempo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Cidade</ion-label>
+    <ion-input [(ngModel)]="city"></ion-input>
+  </ion-item>
+  <ion-button (click)="getForecast()">Buscar Previsão</ion-button>
+
+  <div *ngIf="forecast">
+    <ion-list>
+      <ion-item *ngFor="let day of forecast.forecast.forecastday">
+        <h4>{{ day.date }}</h4>
+        <p>Temperatura:<br> {{ day.day.avgtemp_c }}°C</p>
+        <p>Condição:<br> {{ day.day.condition.text }}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/weather">Ver Clima</ion-button>
+      <ion-button routerLink="/home">Voltar para Home</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
